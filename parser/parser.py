@@ -3,5 +3,5 @@ from .grammar import grammar
 
 
 def parse(content):
-    parser = Lark(grammar)
+    parser = Lark(grammar, propagate_positions=True)
     return parser.parse(content)

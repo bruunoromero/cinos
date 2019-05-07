@@ -1,22 +1,30 @@
 grammar = """
-start: expr 
+start: value*
 
-expr: unary_expr
+symbol: /[\-\+a-zA-Z\?\*$=%!\/<>\.][\-\+a-zA-Z0-9\?\*$=%!\/<>\.]*/
 
-BANG: "!"
-PLUS: "+"
-MINUS: "-"
+refer: symbol(":"symbol)?
 
-unary_op: PLUS
-        | MINUS
+list: "(" value* ")"
 
-unary_expr: unary_op primitive
+vec: "[" value* "]"
 
-?primitive: STRING
-          | INT
-          | FLOAT
+map: "{" value* "}"
 
+keyword: ":" symbol
+
+value: refer
+     | list
+     | vec
+     | keyword
+     | map
+     | STRING
+     | INT
+     | FLOAT
+     
+%import common.WS
 %import common.INT
 %import common.FLOAT
 %import common.ESCAPED_STRING -> STRING
+%ignore WS
 """

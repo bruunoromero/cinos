@@ -1,3 +1,5 @@
 import parser
+from ast import UntypedTransformer
 
-print(parser.parse("+1"))
+tree = parser.parse(":a")
+print(UntypedTransformer().transform(tree))
