@@ -1,26 +1,32 @@
 grammar = """
-start: value*
+start: quoted_value*
 
-symbol: /[\-\+a-zA-Z\?\*$=%!\/<>\.][\-\+a-zA-Z0-9\?\*$=%!\/<>\.]*/
+SYMBOL: /[\-\+a-zA-Z\?\*$=%!\/<>\.][\-\+a-zA-Z0-9\?\*$=%!\/<>\.]*/
 
-refer: symbol(":"symbol)?
+QUOTE: "'"
 
-list: "(" value* ")"
+refer: SYMBOL(":"SYMBOL)?
 
-vec: "[" value* "]"
+list: "(" quoted_value* ")"
 
-map: "{" value* "}"
+vec: "[" quoted_value* "]"
 
-keyword: ":" symbol
+map: "{" quoted_value* "}"
 
+KEYWORD: /:[\-\+a-zA-Z0-9\?\*$=%!\/<>\.]+/
+
+primitive: KEYWORD
+         | STRING
+         | INT
+         | FLOAT
+         
 value: refer
      | list
      | vec
-     | keyword
      | map
-     | STRING
-     | INT
-     | FLOAT
+     | primitive
+
+quoted_value: QUOTE? value
      
 %import common.WS
 %import common.INT

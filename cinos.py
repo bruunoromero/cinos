@@ -1,5 +1,5 @@
 import parser
-from ast import UntypedTransformer
+from tree import CNSTransformer
 
-tree = parser.parse(":a")
-print(UntypedTransformer().transform(tree))
+tree = parser.parse("'(a 10 20)")
+print(CNSTransformer().transform(tree))
