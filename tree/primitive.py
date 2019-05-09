@@ -22,5 +22,9 @@ class CNSFloat(CNSPrimitive):
     pass
 
 
+class CNSString(CNSPrimitive):
+    pass
+
+
 class CNSKeyword(CNSPrimitive):
     pass
