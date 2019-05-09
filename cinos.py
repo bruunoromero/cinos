@@ -1,6 +1,8 @@
 import parser
-from tree import CNSTransformer
+from transformer import transform
+from interpreter import interpret
 
-tree = parser.parse("{:a 10"
-                    " :b 30}")
-print(CNSTransformer().transform(tree))
+tree = parser.parse("1.1")
+print(tree)
+mappedTree = transform(tree)
+interpret(mappedTree)

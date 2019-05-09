@@ -6,7 +6,10 @@ from .derivated import CNSList, CNSMap, CNSVector
 from .primitive import CNSInt, CNSFloat, CNSString, CNSKeyword
 
 
-class CNSTransformer(Transformer):
+def transform(tree):
+    return _CNSTransformer().transform(tree)
+
+class _CNSTransformer(Transformer):
 
     @staticmethod
     def start(args):

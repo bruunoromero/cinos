@@ -17,14 +17,14 @@ KEYWORD: /:[\-\+a-zA-Z0-9\?\*$=%!\/<>\.]+/
 
 primitive: KEYWORD
          | STRING
-         | INT
          | FLOAT
+         | INT
          
-value: refer
+value: primitive
      | list
      | vec
      | map
-     | primitive
+     | refer
 
 quoted_value: QUOTE? value
      
