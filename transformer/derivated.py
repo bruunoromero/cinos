@@ -1,6 +1,6 @@
 class CNSList:
     def __init__(self, els):
-        self.__els = els
+        self.__els = list(els)
 
     @property
     def els(self):
@@ -25,7 +25,7 @@ class CNSMap:
         if len(els) % 2 != 0:
             raise Exception("Map with odd number of elements")
 
-        self.__entries = chunks(els, 2)
+        self.__entries = list(chunks(els, 2))
 
     @property
     def entries(self):

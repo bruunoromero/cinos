@@ -16,7 +16,7 @@ class CNSSymbol(CNSNode):
 
 class CNSReference:
     def __init__(self, symbols):
-        self.__symbols = symbols
+        self.__symbols = list(symbols)
 
     @property
     def symbols(self):

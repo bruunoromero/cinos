@@ -2,7 +2,7 @@ import parser
 from transformer import transform
 from interpreter import interpret
 
-tree = parser.parse("1.1")
-print(tree)
+tree = parser.parse("(def a (fn* [a] a))")
 mappedTree = transform(tree)
-interpret(mappedTree)
+context, _ = interpret(mappedTree)
+print(context.get("a").invoke([1]))
