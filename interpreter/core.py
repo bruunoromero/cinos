@@ -23,7 +23,7 @@ core_evaluators = {
 
 def evaluate_core_fn(expr, evaluator, context):
     args = expr.els[1:]
-    name = expr.els[0][0].symbols[0].name
+    name = reference_to_str(expr.els[0][0])
     core_evaluator = core_evaluators[name]
 
     if core_evaluator:
