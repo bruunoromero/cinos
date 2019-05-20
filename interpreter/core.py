@@ -1,3 +1,4 @@
+from functools import reduce
 from .function import Function
 from utils import reference_to_str
 
@@ -15,7 +16,19 @@ def define(args, evaluator, context):
     return context.set(name, value)
 
 
+def dot(args, evaluator, context):
+    fn_name = reference_to_str(args[0][0])
+    args = list(map(lambda arg: evaluator(arg, context), args[1:]))
+
+    if len(args) == 1:
+        callee = args[0]
+        return getattr(callee, fn_name)()
+    else:
+        return reduce(lambda l, r: getattr(l, fn_name)(r), args)
+
+
 core_evaluators = {
+    ".": dot,
     "fn*": fn,
     "def": define,
 }
